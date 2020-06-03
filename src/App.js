@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import './App.scss';
+
+import Search from './components/Search'
+import Youtube from './components/Youtube'
+
+import firebase from 'firebase'
+
+const config = {
+    apiKey: process.env.FIREBASE_KEY,
+    authDomain: "nifty-bindery-711.firebaseapp.com",
+    databaseURL: "https://nifty-bindery-711.firebaseio.com",
+    projectId: "nifty-bindery-711",
+    storageBucket: "nifty-bindery-711.appspot.com",
+    messagingSenderId: "356833982522",
+    appId: "1:356833982522:web:e43c63d24d8528fe67dd03"
+}
+firebase.initializeApp(config)
 
 function App() {
+  const [selectedSong, setSelectedSong] = useState('')
+  const playReference = firebase.database().ref().child('Playlist')
+  
+  useEffect(() => {
+  
+      playReference.on('value', function(snapshot){
+        setSelectedSong(snapshot.val());
+      });
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="container">        
+        <Youtube selectedSong={selectedSong}/>
+        <Search databaseRef={playReference} setSelectedSong={setSelectedSong}/>
+      </div>
   );
 }
 

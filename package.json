@@ -6,9 +6,17 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "bulma": "^0.8.2",
+    "firebase": "^7.14.6",
+    "lodash.debounce": "^4.0.8",
+    "nes.css": "^2.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-firebase-hooks": "^2.2.0",
+    "react-redux-firebase": "^3.4.0",
+    "react-scripts": "3.4.1",
+    "react-youtube": "^7.11.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "node-sass": "^4.14.1"
   }
 }
